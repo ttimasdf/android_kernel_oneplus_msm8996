@@ -9,7 +9,7 @@ ldflags()
 	for ext in so a dll.a dylib ; do
 		for lib in ncursesw ncurses curses ; do
 			$cc -print-file-name=lib${lib}.${ext} | grep -q /
-			if [ $? -eq 0 ]; then
+            if [ $? -eq 0 -o -f /usr/lib/lib${lib}.${ext} ]; then
 				echo "-l${lib}"
 				exit
 			fi
